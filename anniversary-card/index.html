@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>С годовщиной свадьбы!</title>
+<title>Happy 24th Anniversary, Mom &amp; Dad!</title>
 <style>
   :root {
     --bg1: #fff1f2;
@@ -25,81 +25,85 @@
     overflow-x: hidden;
   }
 
-  /* падающие сердечки */
+  /* falling hearts */
   #hearts { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
-  .heart {
-    position: absolute; top: -40px;
-    animation: fall linear forwards;
-    opacity: .8;
-  }
-  @keyframes fall {
-    to { transform: translateY(110vh) rotate(360deg); opacity: .2; }
-  }
+  .heart { position: absolute; top: -40px; animation: fall linear forwards; opacity: .8; }
+  @keyframes fall { to { transform: translateY(110vh) rotate(360deg); opacity: .2; } }
 
-  main { position: relative; z-index: 1; max-width: 760px; margin: 0 auto; padding: 0 20px 60px; }
+  main { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 0 20px 60px; }
 
-  .hero { text-align: center; padding: 70px 0 30px; }
+  /* hero */
+  .hero { text-align: center; padding: 70px 0 20px; }
   .rings { font-size: 56px; animation: pulse 2.4s ease-in-out infinite; display: inline-block; }
   @keyframes pulse { 50% { transform: scale(1.12); } }
-  h1 {
-    font-size: clamp(34px, 8vw, 58px);
-    color: var(--rose);
-    margin: 14px 0 8px;
-    line-height: 1.15;
+  h1 { font-size: clamp(34px, 8vw, 62px); color: var(--rose); margin: 14px 0 8px; line-height: 1.15; }
+  .names { margin-top: 10px; font-size: 24px; font-style: italic; color: var(--rose-soft); }
+  .big-years {
+    margin: 26px auto 0; width: 190px; height: 190px; border-radius: 50%;
+    border: 3px solid var(--gold); display: grid; place-content: center;
+    background: rgba(255,255,255,.7); box-shadow: 0 10px 40px rgba(184,134,11,.25);
   }
-  .years {
-    display: inline-block;
-    margin-top: 10px;
-    padding: 6px 20px;
-    border: 2px solid var(--gold);
-    color: var(--gold);
-    border-radius: 999px;
-    font-size: 20px;
-    letter-spacing: .04em;
-  }
-  .names { margin-top: 18px; font-size: 22px; font-style: italic; color: var(--rose-soft); }
+  .big-years b { display: block; font-size: 78px; line-height: 1; color: var(--gold); }
+  .big-years span { font-size: 17px; letter-spacing: .12em; text-transform: uppercase; color: var(--gold); }
   .divider { margin: 26px auto 0; color: var(--gold); font-size: 22px; letter-spacing: .5em; }
 
   .reveal { opacity: 0; transform: translateY(24px); transition: opacity .9s ease, transform .9s ease; }
   .reveal.show { opacity: 1; transform: none; }
 
   .card {
-    background: var(--card);
-    border-radius: 22px;
-    padding: 32px 28px;
-    margin: 26px 0;
-    box-shadow: 0 10px 40px rgba(190, 18, 60, .12);
-    line-height: 1.75;
-    font-size: 19px;
+    background: var(--card); border-radius: 22px; padding: 32px 28px; margin: 26px auto;
+    max-width: 700px; box-shadow: 0 10px 40px rgba(190, 18, 60, .12);
+    line-height: 1.75; font-size: 19px;
   }
-  .card h2 { color: var(--rose); font-size: 24px; margin-bottom: 14px; text-align: center; }
+  .card h2 { color: var(--rose); font-size: 26px; margin-bottom: 14px; text-align: center; }
   .card p + p { margin-top: 14px; }
 
-  /* фото */
-  .gallery { display: grid; gap: 18px; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); margin: 26px 0; }
-  .photo {
-    background: #fff; padding: 10px 10px 34px; border-radius: 6px;
-    box-shadow: 0 8px 26px rgba(0,0,0,.15);
-    transition: transform .3s;
+  /* photo + quote stories */
+  .story {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 34px; align-items: center;
+    margin: 64px 0;
   }
-  .photo:nth-child(odd)  { transform: rotate(-2deg); }
-  .photo:nth-child(even) { transform: rotate(2deg); }
-  .photo.show:hover { transform: rotate(0) scale(1.03); }
+  .story:nth-of-type(even) .photo { order: 2; }
+  .photo {
+    background: #fff; padding: 12px 12px 40px; border-radius: 6px;
+    box-shadow: 0 8px 26px rgba(0,0,0,.18); cursor: zoom-in;
+    transform: rotate(-2deg); transition: transform .3s;
+    position: relative;
+  }
+  .story:nth-of-type(even) .photo { transform: rotate(2deg); }
+  .photo:hover { transform: rotate(0) scale(1.03) !important; }
   .photo img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; display: block; background: var(--bg2); }
+  .photo .no { position: absolute; right: 16px; bottom: 10px; font-style: italic; color: var(--rose-soft); font-size: 15px; }
+  .photo.empty { cursor: default; }
   .photo.empty img { visibility: hidden; }
-  .photo.empty { position: relative; }
   .photo.empty::after {
-    content: "положи фото в папку photos";
-    position: absolute; inset: 10px 10px 34px; display: grid; place-items: center;
+    content: "put your photo into the photos folder";
+    position: absolute; inset: 12px 12px 40px; display: grid; place-items: center;
     text-align: center; padding: 10px; font-size: 14px; color: var(--rose-soft);
     border: 2px dashed var(--rose-soft);
   }
+  .story.no-photo { grid-template-columns: 1fr; }
+  .story.no-photo .photo { display: none; }
+
+  blockquote {
+    position: relative; font-size: clamp(21px, 3.2vw, 27px); line-height: 1.45;
+    font-style: italic; color: var(--rose); padding: 10px 6px 0 6px;
+  }
+  blockquote::before {
+    content: "\201C"; position: absolute; top: -34px; left: -6px;
+    font-size: 90px; color: var(--gold); opacity: .45; line-height: 1;
+  }
+  blockquote cite {
+    display: block; margin-top: 14px; font-size: 16px; font-style: normal;
+    color: var(--gold); letter-spacing: .06em;
+  }
+  .story.no-photo blockquote { text-align: center; }
 
   .wishes { list-style: none; }
   .wishes li { padding: 8px 0 8px 34px; position: relative; }
-  .wishes li::before { content: "❤"; color: var(--rose-soft); position: absolute; left: 4px; }
+  .wishes li::before { content: "\2764"; color: var(--rose-soft); position: absolute; left: 4px; }
 
-  .sign { text-align: center; margin-top: 30px; font-size: 22px; font-style: italic; color: var(--rose); }
+  .sign { text-align: center; margin-top: 30px; font-size: 24px; font-style: italic; color: var(--rose); }
   .sign small { display: block; margin-top: 8px; font-size: 16px; color: var(--gold); font-style: normal; }
 
   button.love {
@@ -109,73 +113,128 @@
     box-shadow: 0 8px 20px rgba(190,18,60,.35); transition: transform .15s;
   }
   button.love:active { transform: scale(.95); }
+
+  /* lightbox */
+  #lightbox {
+    position: fixed; inset: 0; z-index: 10; background: rgba(76,5,25,.85);
+    display: none; align-items: center; justify-content: center; padding: 20px; cursor: zoom-out;
+  }
+  #lightbox.open { display: flex; }
+  #lightbox img { max-width: 100%; max-height: 100%; border-radius: 8px; box-shadow: 0 10px 50px rgba(0,0,0,.5); }
+
+  @media (max-width: 640px) {
+    .story { grid-template-columns: 1fr; gap: 26px; margin: 48px 0; }
+    .story:nth-of-type(even) .photo { order: 0; }
+    .photo { max-width: 340px; margin: 0 auto; width: 100%; }
+    blockquote { text-align: center; padding-top: 24px; }
+    blockquote::before { left: 50%; transform: translateX(-50%); top: -14px; }
+  }
 </style>
 </head>
 <body>
 <div id="hearts"></div>
+<div id="lightbox"><img alt=""></div>
 
 <main>
   <section class="hero reveal">
     <div class="rings">💍</div>
-    <h1>С годовщиной свадьбы!</h1>
-    <!-- Если число лет не нужно — оставь WEDDING_YEAR = null в настройках внизу -->
-    <div class="years" id="years"></div>
-    <div class="names">Мама и Папа</div>
+    <h1>Happy Anniversary!</h1>
+    <div class="names">Mom &amp; Dad</div>
+    <div class="big-years"><b id="yearsNum">0</b><span>years together</span></div>
     <div class="divider">❦ ❦ ❦</div>
   </section>
 
   <section class="card reveal">
-    <h2>Дорогие наши мама и папа!</h2>
-    <p>Сегодня особенный день — день, когда началась ваша общая история. Спасибо, что вы вместе прошли через всё: радости и трудности, смех и заботы — и всегда оставались друг для друга опорой.</p>
-    <p>Глядя на вас, мы учимся тому, что такое настоящая любовь: терпение, уважение, умение поддержать и просто быть рядом.</p>
+    <h2>Dear Mom and Dad,</h2>
+    <p>Twenty-four years ago, two people said “yes” to each other, and that one little word became everything we have today: our home, our family, and our whole world.</p>
+    <p>Thank you for every laugh, every worry, every sleepless night and every ordinary day you shared. You taught us what real love looks like. It isn’t loud or perfect. It is patient, kind, and always there.</p>
   </section>
 
-  <div class="gallery" id="gallery">
-    <figure class="photo reveal"><img src="photos/1.jpg" alt="Фото 1"></figure>
-    <figure class="photo reveal"><img src="photos/2.jpg" alt="Фото 2"></figure>
-    <figure class="photo reveal"><img src="photos/3.jpg" alt="Фото 3"></figure>
-  </div>
+  <!-- 10 photos, each with its own quote. Photos: photos/1.jpg ... photos/10.jpg -->
+  <section class="story reveal">
+    <figure class="photo"><img alt="Photo 1"></figure>
+    <blockquote>A successful marriage requires falling in love many times, always with the same person.<cite>— Mignon McLaughlin</cite></blockquote>
+  </section>
+
+  <section class="story reveal">
+    <figure class="photo"><img alt="Photo 2"></figure>
+    <blockquote>Love does not consist in gazing at each other, but in looking outward together in the same direction.<cite>— Antoine de Saint-Exupéry</cite></blockquote>
+  </section>
+
+  <section class="story reveal">
+    <figure class="photo"><img alt="Photo 3"></figure>
+    <blockquote>Grow old along with me! The best is yet to be.<cite>— Robert Browning</cite></blockquote>
+  </section>
+
+  <section class="story reveal">
+    <figure class="photo"><img alt="Photo 4"></figure>
+    <blockquote>Home is where love resides, memories are created, friends always belong and laughter never ends.<cite>— Proverb</cite></blockquote>
+  </section>
+
+  <section class="story reveal">
+    <figure class="photo"><img alt="Photo 5"></figure>
+    <blockquote>Love is friendship that has caught fire.<cite>— Ann Landers</cite></blockquote>
+  </section>
+
+  <section class="story reveal">
+    <figure class="photo"><img alt="Photo 6"></figure>
+    <blockquote>In all the world, there is no heart for me like yours. In all the world, there is no love for you like mine.<cite>— Maya Angelou</cite></blockquote>
+  </section>
+
+  <section class="story reveal">
+    <figure class="photo"><img alt="Photo 7"></figure>
+    <blockquote>Family is not an important thing. It’s everything.<cite>— Michael J. Fox</cite></blockquote>
+  </section>
+
+  <section class="story reveal">
+    <figure class="photo"><img alt="Photo 8"></figure>
+    <blockquote>Love is composed of a single soul inhabiting two bodies.<cite>— Aristotle</cite></blockquote>
+  </section>
+
+  <section class="story reveal">
+    <figure class="photo"><img alt="Photo 9"></figure>
+    <blockquote>A happy marriage is a long conversation that always seems too short.<cite>— André Maurois</cite></blockquote>
+  </section>
+
+  <section class="story reveal">
+    <figure class="photo"><img alt="Photo 10"></figure>
+    <blockquote>The best thing to hold onto in life is each other.<cite>— Audrey Hepburn</cite></blockquote>
+  </section>
 
   <section class="card reveal">
-    <h2>Мы желаем вам</h2>
+    <h2>We wish you</h2>
     <ul class="wishes">
-      <li>крепкого здоровья и бодрости на долгие годы;</li>
-      <li>тепла в доме и мира в сердце;</li>
-      <li>чтобы любовь между вами с каждым годом становилась только крепче;</li>
-      <li>больше путешествий, приятных встреч и спокойных, счастливых дней вместе;</li>
-      <li>и чтобы мы всегда могли радовать вас так же, как вы радуете нас.</li>
+      <li>strong health and plenty of energy for many more years;</li>
+      <li>a warm home and peace in your hearts;</li>
+      <li>a love that grows deeper with every single year;</li>
+      <li>more travels, sweet moments and calm, happy days together;</li>
+      <li>and may we always make you as proud as you make us.</li>
     </ul>
   </section>
 
   <div class="sign reveal">
-    С огромной любовью и благодарностью,<br>
-    ваши дети ❤
-    <small>Спасибо вам за всё!</small>
+    With all our love and gratitude,<br>
+    your children ❤
+    <small>Thank you for everything!</small>
   </div>
 
-  <button class="love" id="loveBtn">Люблю вас ❤</button>
+  <button class="love" id="loveBtn">We love you ❤</button>
 </main>
 
 <script>
-  // ===== НАСТРОЙКИ =====
-  // Год свадьбы родителей. Если не знаешь — не нужно, поставь null
-  const WEDDING_YEAR = null;   // например 1998
-  // =====================
+  // ===== SETTINGS =====
+  const YEARS = 24;   // years together
+  // ====================
 
-  // число лет вместе
-  const yearsEl = document.getElementById('years');
-  if (WEDDING_YEAR) {
-    const n = new Date().getFullYear() - WEDDING_YEAR;
-    const mod10 = n % 10, mod100 = n % 100;
-    let w = 'лет';
-    if (mod10 === 1 && mod100 !== 11) w = 'год';
-    else if (mod10 >= 2 && mod10 <= 4 && (mod100 < 12 || mod100 > 14)) w = 'года';
-    yearsEl.textContent = `${n} ${w} вместе`;
-  } else {
-    yearsEl.remove();
-  }
+  // count up the years
+  const numEl = document.getElementById('yearsNum');
+  let cur = 0;
+  const counter = setInterval(() => {
+    numEl.textContent = ++cur;
+    if (cur >= YEARS) clearInterval(counter);
+  }, 70);
 
-  // сердечки
+  // hearts
   const hearts = document.getElementById('hearts');
   const emojis = ['❤', '💖', '💕', '🌹', '✨'];
   function spawn() {
@@ -194,22 +253,25 @@
     for (let i = 0; i < 30; i++) setTimeout(spawn, i * 50);
   });
 
-  // плавное появление при прокрутке
+  // smooth appearing on scroll
   const io = new IntersectionObserver(es => es.forEach(e => {
     if (e.isIntersecting) { e.target.classList.add('show'); io.unobserve(e.target); }
   }), { threshold: .15 });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-  // фото: пробуем разные расширения (jpg, jpeg, png, webp);
-  // если часть фото не нашлась — убираем лишние рамки
-  const photos = [...document.querySelectorAll('.photo')];
+  // photos: try several extensions; if a photo is missing, its quote stays without a frame
+  const stories = [...document.querySelectorAll('.story')];
   const exts = ['jpg', 'jpeg', 'png', 'webp', 'JPG', 'JPEG', 'PNG'];
-  let pending = photos.length, okCount = 0;
+  let pending = stories.length, okCount = 0;
   function done() {
     if (--pending > 0) return;
-    if (okCount > 0) photos.forEach(p => { if (p.classList.contains('empty')) p.remove(); });
+    stories.forEach(s => {
+      const p = s.querySelector('.photo');
+      if (okCount > 0) { if (p.classList.contains('empty')) s.classList.add('no-photo'); }
+    });
   }
-  photos.forEach((p, i) => {
+  stories.forEach((s, i) => {
+    const p = s.querySelector('.photo');
     const img = p.querySelector('img');
     let tried = 0;
     img.addEventListener('load', () => { okCount++; done(); });
@@ -220,6 +282,17 @@
     });
     img.src = `photos/${i + 1}.${exts[0]}`;
   });
+
+  // click a photo to enlarge
+  const lb = document.getElementById('lightbox');
+  const lbImg = lb.querySelector('img');
+  document.querySelectorAll('.photo').forEach(p => p.addEventListener('click', () => {
+    if (p.classList.contains('empty')) return;
+    lbImg.src = p.querySelector('img').currentSrc || p.querySelector('img').src;
+    lb.classList.add('open');
+  }));
+  lb.addEventListener('click', () => lb.classList.remove('open'));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') lb.classList.remove('open'); });
 </script>
 </body>
 </html>
