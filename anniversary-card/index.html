@@ -1,216 +1,225 @@
-!DOCTYPE html
-html lang=ru
-head
-meta charset=UTF-8
-meta name=viewport content=width=device-width, initial-scale=1
-titleС годовщиной свадьбы!title
-style
-  root {
-    --bg1 #fff1f2;
-    --bg2 #ffe4e6;
-    --rose #be123c;
-    --rose-soft #fb7185;
-    --gold #b8860b;
-    --ink #4c0519;
-    --card #ffffff;
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>С годовщиной свадьбы!</title>
+<style>
+  :root {
+    --bg1: #fff1f2;
+    --bg2: #ffe4e6;
+    --rose: #be123c;
+    --rose-soft: #fb7185;
+    --gold: #b8860b;
+    --ink: #4c0519;
+    --card: #ffffff;
   }
-   { box-sizing border-box; margin 0; padding 0; }
-  html { scroll-behavior smooth; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
   body {
-    font-family Georgia, Times New Roman, serif;
-    color var(--ink);
-    background linear-gradient(160deg, var(--bg1), var(--bg2));
-    min-height 100vh;
-    overflow-x hidden;
+    font-family: Georgia, "Times New Roman", serif;
+    color: var(--ink);
+    background: linear-gradient(160deg, var(--bg1), var(--bg2));
+    background-attachment: fixed;
+    min-height: 100vh;
+    overflow-x: hidden;
   }
 
-   падающие сердечки 
-  #hearts { position fixed; inset 0; pointer-events none; z-index 0; overflow hidden; }
+  /* падающие сердечки */
+  #hearts { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
   .heart {
-    position absolute; top -40px;
-    animation fall linear forwards;
-    opacity .8;
+    position: absolute; top: -40px;
+    animation: fall linear forwards;
+    opacity: .8;
   }
   @keyframes fall {
-    to { transform translateY(110vh) rotate(360deg); opacity .2; }
+    to { transform: translateY(110vh) rotate(360deg); opacity: .2; }
   }
 
-  main { position relative; z-index 1; max-width 760px; margin 0 auto; padding 0 20px 60px; }
+  main { position: relative; z-index: 1; max-width: 760px; margin: 0 auto; padding: 0 20px 60px; }
 
-  .hero { text-align center; padding 70px 0 30px; }
-  .rings { font-size 56px; animation pulse 2.4s ease-in-out infinite; display inline-block; }
-  @keyframes pulse { 50% { transform scale(1.12); } }
+  .hero { text-align: center; padding: 70px 0 30px; }
+  .rings { font-size: 56px; animation: pulse 2.4s ease-in-out infinite; display: inline-block; }
+  @keyframes pulse { 50% { transform: scale(1.12); } }
   h1 {
-    font-size clamp(34px, 8vw, 58px);
-    color var(--rose);
-    margin 14px 0 8px;
-    line-height 1.15;
+    font-size: clamp(34px, 8vw, 58px);
+    color: var(--rose);
+    margin: 14px 0 8px;
+    line-height: 1.15;
   }
   .years {
-    display inline-block;
-    margin-top 10px;
-    padding 6px 20px;
-    border 2px solid var(--gold);
-    color var(--gold);
-    border-radius 999px;
-    font-size 20px;
-    letter-spacing .04em;
+    display: inline-block;
+    margin-top: 10px;
+    padding: 6px 20px;
+    border: 2px solid var(--gold);
+    color: var(--gold);
+    border-radius: 999px;
+    font-size: 20px;
+    letter-spacing: .04em;
   }
-  .names { margin-top 18px; font-size 22px; font-style italic; color var(--rose-soft); }
-  .divider { margin 26px auto 0; color var(--gold); font-size 22px; letter-spacing .5em; }
+  .names { margin-top: 18px; font-size: 22px; font-style: italic; color: var(--rose-soft); }
+  .divider { margin: 26px auto 0; color: var(--gold); font-size: 22px; letter-spacing: .5em; }
 
-  .reveal { opacity 0; transform translateY(24px); transition opacity .9s ease, transform .9s ease; }
-  .reveal.show { opacity 1; transform none; }
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity .9s ease, transform .9s ease; }
+  .reveal.show { opacity: 1; transform: none; }
 
   .card {
-    background var(--card);
-    border-radius 22px;
-    padding 32px 28px;
-    margin 26px 0;
-    box-shadow 0 10px 40px rgba(190, 18, 60, .12);
-    line-height 1.75;
-    font-size 19px;
+    background: var(--card);
+    border-radius: 22px;
+    padding: 32px 28px;
+    margin: 26px 0;
+    box-shadow: 0 10px 40px rgba(190, 18, 60, .12);
+    line-height: 1.75;
+    font-size: 19px;
   }
-  .card h2 { color var(--rose); font-size 24px; margin-bottom 14px; text-align center; }
-  .card p + p { margin-top 14px; }
+  .card h2 { color: var(--rose); font-size: 24px; margin-bottom: 14px; text-align: center; }
+  .card p + p { margin-top: 14px; }
 
-   фото 
-  .gallery { display grid; gap 18px; grid-template-columns repeat(auto-fit, minmax(210px, 1fr)); margin 26px 0; }
+  /* фото */
+  .gallery { display: grid; gap: 18px; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); margin: 26px 0; }
   .photo {
-    background #fff; padding 10px 10px 34px; border-radius 6px;
-    box-shadow 0 8px 26px rgba(0,0,0,.15);
-    transition transform .3s;
+    background: #fff; padding: 10px 10px 34px; border-radius: 6px;
+    box-shadow: 0 8px 26px rgba(0,0,0,.15);
+    transition: transform .3s;
   }
-  .photonth-child(odd)  { transform rotate(-2deg); }
-  .photonth-child(even) { transform rotate(2deg); }
-  .photohover { transform rotate(0) scale(1.03); }
-  .photo img { width 100%; aspect-ratio 4  5; object-fit cover; display block; background var(--bg2); }
-  .photo.empty img { visibility hidden; }
-  .photo.empty { position relative; }
-  .photo.emptyafter {
-    content положи фото в папку photos;
-    position absolute; inset 10px 10px 34px; display grid; place-items center;
-    text-align center; padding 10px; font-size 14px; color var(--rose-soft);
-    border 2px dashed var(--rose-soft);
+  .photo:nth-child(odd)  { transform: rotate(-2deg); }
+  .photo:nth-child(even) { transform: rotate(2deg); }
+  .photo.show:hover { transform: rotate(0) scale(1.03); }
+  .photo img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; display: block; background: var(--bg2); }
+  .photo.empty img { visibility: hidden; }
+  .photo.empty { position: relative; }
+  .photo.empty::after {
+    content: "положи фото в папку photos";
+    position: absolute; inset: 10px 10px 34px; display: grid; place-items: center;
+    text-align: center; padding: 10px; font-size: 14px; color: var(--rose-soft);
+    border: 2px dashed var(--rose-soft);
   }
 
-  .wishes { list-style none; }
-  .wishes li { padding 8px 0 8px 34px; position relative; }
-  .wishes libefore { content ❤; color var(--rose-soft); position absolute; left 4px; }
+  .wishes { list-style: none; }
+  .wishes li { padding: 8px 0 8px 34px; position: relative; }
+  .wishes li::before { content: "❤"; color: var(--rose-soft); position: absolute; left: 4px; }
 
-  .sign { text-align center; margin-top 30px; font-size 22px; font-style italic; color var(--rose); }
-  .sign small { display block; margin-top 8px; font-size 16px; color var(--gold); font-style normal; }
+  .sign { text-align: center; margin-top: 30px; font-size: 22px; font-style: italic; color: var(--rose); }
+  .sign small { display: block; margin-top: 8px; font-size: 16px; color: var(--gold); font-style: normal; }
 
   button.love {
-    display block; margin 30px auto 0; padding 14px 32px;
-    font inherit; font-size 18px; color #fff; background var(--rose);
-    border 0; border-radius 999px; cursor pointer;
-    box-shadow 0 8px 20px rgba(190,18,60,.35); transition transform .15s;
+    display: block; margin: 30px auto 0; padding: 14px 32px;
+    font: inherit; font-size: 18px; color: #fff; background: var(--rose);
+    border: 0; border-radius: 999px; cursor: pointer;
+    box-shadow: 0 8px 20px rgba(190,18,60,.35); transition: transform .15s;
   }
-  button.loveactive { transform scale(.95); }
-style
-head
-body
-div id=heartsdiv
+  button.love:active { transform: scale(.95); }
+</style>
+</head>
+<body>
+<div id="hearts"></div>
 
-main
-  section class=hero reveal
-    div class=rings💍div
-    h1С годовщиной свадьбы!h1
-    !-- Если число лет не нужно — удали эту строку --
-    div class=years id=yearsdiv
-    div class=namesМама и Папаdiv
-    div class=divider❦ ❦ ❦div
-  section
+<main>
+  <section class="hero reveal">
+    <div class="rings">💍</div>
+    <h1>С годовщиной свадьбы!</h1>
+    <!-- Если число лет не нужно — оставь WEDDING_YEAR = null в настройках внизу -->
+    <div class="years" id="years"></div>
+    <div class="names">Мама и Папа</div>
+    <div class="divider">❦ ❦ ❦</div>
+  </section>
 
-  section class=card reveal
-    h2Дорогие наши мама и папа!h2
-    pСегодня особенный день — день, когда началась ваша общая история. Спасибо, что вы вместе прошли через всё радости и трудности, смех и заботы — и всегда оставались друг для друга опорой.p
-    pГлядя на вас, мы учимся тому, что такое настоящая любовь терпение, уважение, умение поддержать и просто быть рядом.p
-  section
+  <section class="card reveal">
+    <h2>Дорогие наши мама и папа!</h2>
+    <p>Сегодня особенный день — день, когда началась ваша общая история. Спасибо, что вы вместе прошли через всё: радости и трудности, смех и заботы — и всегда оставались друг для друга опорой.</p>
+    <p>Глядя на вас, мы учимся тому, что такое настоящая любовь: терпение, уважение, умение поддержать и просто быть рядом.</p>
+  </section>
 
-  div class=gallery id=gallery
-    figure class=photo revealimg src=photos1.jpg alt=Фото 1figure
-    figure class=photo revealimg src=photos2.jpg alt=Фото 2figure
-    figure class=photo revealimg src=photos3.jpg alt=Фото 3figure
-  div
+  <div class="gallery" id="gallery">
+    <figure class="photo reveal"><img src="photos/1.jpg" alt="Фото 1"></figure>
+    <figure class="photo reveal"><img src="photos/2.jpg" alt="Фото 2"></figure>
+    <figure class="photo reveal"><img src="photos/3.jpg" alt="Фото 3"></figure>
+  </div>
 
-  section class=card reveal
-    h2Мы желаем вамh2
-    ul class=wishes
-      liкрепкого здоровья и бодрости на долгие годы;li
-      liтепла в доме и мира в сердце;li
-      liчтобы любовь между вами с каждым годом становилась только крепче;li
-      liбольше путешествий, приятных встреч и спокойных, счастливых дней вместе;li
-      liи чтобы мы всегда могли радовать вас так же, как вы радуете нас.li
-    ul
-  section
+  <section class="card reveal">
+    <h2>Мы желаем вам</h2>
+    <ul class="wishes">
+      <li>крепкого здоровья и бодрости на долгие годы;</li>
+      <li>тепла в доме и мира в сердце;</li>
+      <li>чтобы любовь между вами с каждым годом становилась только крепче;</li>
+      <li>больше путешествий, приятных встреч и спокойных, счастливых дней вместе;</li>
+      <li>и чтобы мы всегда могли радовать вас так же, как вы радуете нас.</li>
+    </ul>
+  </section>
 
-  div class=sign reveal
-    С огромной любовью и благодарностью,br
+  <div class="sign reveal">
+    С огромной любовью и благодарностью,<br>
     ваши дети ❤
-    smallСпасибо вам за всё!small
-  div
+    <small>Спасибо вам за всё!</small>
+  </div>
 
-  button class=love id=loveBtnЛюблю вас ❤button
-main
+  <button class="love" id="loveBtn">Люблю вас ❤</button>
+</main>
 
-script
-   ===== НАСТРОЙКИ ===== 
-   Год свадьбы родителей. Если не знаешь  не нужно — поставь null
-  const WEDDING_YEAR = null;    например 1998
-   ===================== 
+<script>
+  // ===== НАСТРОЙКИ =====
+  // Год свадьбы родителей. Если не знаешь — не нужно, поставь null
+  const WEDDING_YEAR = null;   // например 1998
+  // =====================
 
-   число лет
+  // число лет вместе
   const yearsEl = document.getElementById('years');
   if (WEDDING_YEAR) {
     const n = new Date().getFullYear() - WEDDING_YEAR;
     const mod10 = n % 10, mod100 = n % 100;
     let w = 'лет';
     if (mod10 === 1 && mod100 !== 11) w = 'год';
-    else if (mod10 = 2 && mod10 = 4 && (mod100  12  mod100  14)) w = 'года';
+    else if (mod10 >= 2 && mod10 <= 4 && (mod100 < 12 || mod100 > 14)) w = 'года';
     yearsEl.textContent = `${n} ${w} вместе`;
   } else {
     yearsEl.remove();
   }
 
-   сердечки
+  // сердечки
   const hearts = document.getElementById('hearts');
   const emojis = ['❤', '💖', '💕', '🌹', '✨'];
   function spawn() {
     const h = document.createElement('div');
     h.className = 'heart';
-    h.textContent = emojis[Math.floor(Math.random()  emojis.length)];
-    h.style.left = Math.random()  100 + 'vw';
-    h.style.fontSize = 14 + Math.random()  22 + 'px';
-    const d = 6 + Math.random()  6;
+    h.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+    h.style.left = Math.random() * 100 + 'vw';
+    h.style.fontSize = 14 + Math.random() * 22 + 'px';
+    const d = 6 + Math.random() * 6;
     h.style.animationDuration = d + 's';
     hearts.appendChild(h);
-    setTimeout(() = h.remove(), d  1000);
+    setTimeout(() => h.remove(), d * 1000);
   }
   setInterval(spawn, 600);
-  document.getElementById('loveBtn').addEventListener('click', () = {
-    for (let i = 0; i  30; i++) setTimeout(spawn, i  50);
+  document.getElementById('loveBtn').addEventListener('click', () => {
+    for (let i = 0; i < 30; i++) setTimeout(spawn, i * 50);
   });
 
-   плавное появление при прокрутке
-  const io = new IntersectionObserver(es = es.forEach(e = {
+  // плавное появление при прокрутке
+  const io = new IntersectionObserver(es => es.forEach(e => {
     if (e.isIntersecting) { e.target.classList.add('show'); io.unobserve(e.target); }
-  }), { threshold .15 });
-  document.querySelectorAll('.reveal').forEach(el = io.observe(el));
+  }), { threshold: .15 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-   фото если часть не загрузилась — убираем лишние рамки
+  // фото: пробуем разные расширения (jpg, jpeg, png, webp);
+  // если часть фото не нашлась — убираем лишние рамки
   const photos = [...document.querySelectorAll('.photo')];
+  const exts = ['jpg', 'jpeg', 'png', 'webp', 'JPG', 'JPEG', 'PNG'];
   let pending = photos.length, okCount = 0;
   function done() {
-    if (--pending  0) return;
-    if (okCount  0) photos.forEach(p = { if (p.classList.contains('empty')) p.remove(); });
+    if (--pending > 0) return;
+    if (okCount > 0) photos.forEach(p => { if (p.classList.contains('empty')) p.remove(); });
   }
-  photos.forEach(p = {
+  photos.forEach((p, i) => {
     const img = p.querySelector('img');
-    img.addEventListener('load',  () = { okCount++; done(); });
-    img.addEventListener('error', () = { p.classList.add('empty'); done(); });
+    let tried = 0;
+    img.addEventListener('load', () => { okCount++; done(); });
+    img.addEventListener('error', () => {
+      tried++;
+      if (tried < exts.length) img.src = `photos/${i + 1}.${exts[tried]}`;
+      else { p.classList.add('empty'); done(); }
+    });
+    img.src = `photos/${i + 1}.${exts[0]}`;
   });
-script
-body
-html
+</script>
+</body>
+</html>
