@@ -113,6 +113,20 @@
     box-shadow: 0 8px 20px rgba(190,18,60,.35); transition: transform .15s;
   }
   button.love:active { transform: scale(.95); }
+  main { padding-bottom: 110px; }
+
+  /* "movie" player: slow auto-scroll */
+  #player {
+    position: fixed; bottom: 18px; left: 50%; transform: translateX(-50%); z-index: 5;
+    display: flex; gap: 8px; transition: opacity .6s;
+  }
+  #player button {
+    font: inherit; font-size: 16px; padding: 11px 22px; border: 0; border-radius: 999px; cursor: pointer;
+    color: #fff; background: rgba(190,18,60,.93); box-shadow: 0 8px 20px rgba(190,18,60,.35);
+    white-space: nowrap;
+  }
+  #player #speedBtn { background: rgba(184,134,11,.93); padding: 11px 16px; }
+  #player.quiet { opacity: 0; }   /* invisible while playing (clean for screen recording), still tappable to pause */
 
   /* lightbox */
   #lightbox {
@@ -221,6 +235,11 @@
   <button class="love" id="loveBtn">We love you ❤</button>
 </main>
 
+<div id="player">
+  <button id="playBtn">▶ Play movie</button>
+  <button id="speedBtn" title="Scroll speed">1×</button>
+</div>
+
 <script>
   // ===== SETTINGS =====
   const YEARS = 24;   // years together
@@ -293,6 +312,65 @@
   }));
   lb.addEventListener('click', () => lb.classList.remove('open'));
   document.addEventListener('keydown', e => { if (e.key === 'Escape') lb.classList.remove('open'); });
+
+  // ===== "movie" mode: the page scrolls down slowly by itself =====
+  // Tip: press Play and screen-record your phone to get a video.
+  const player = document.getElementById('player');
+  const playBtn = document.getElementById('playBtn');
+  const speedBtn = document.getElementById('speedBtn');
+  const BASE_SPEED = 55;               // px per second at 1×
+  const speeds = [0.5, 1, 2];
+  let speedIdx = 1, playing = false, y = 0, lastT = 0, quietTimer = null;
+
+  function maxScroll() { return document.documentElement.scrollHeight - window.innerHeight; }
+  function setLabel(text) { playBtn.textContent = text; }
+
+  function armQuiet() {
+    clearTimeout(quietTimer);
+    player.classList.remove('quiet');
+    if (playing) quietTimer = setTimeout(() => player.classList.add('quiet'), 3000);
+  }
+  function frame(t) {
+    if (!playing) return;
+    const dt = Math.min(t - lastT, 100) / 1000;   // seconds since last frame
+    lastT = t;
+    y += BASE_SPEED * speeds[speedIdx] * dt;
+    const max = maxScroll();
+    if (y >= max) {
+      window.scrollTo({ top: max, behavior: 'instant' });
+      stop('↺ Replay');
+      return;
+    }
+    window.scrollTo({ top: y, behavior: 'instant' });
+    requestAnimationFrame(frame);
+  }
+  function start() {
+    lb.classList.remove('open');
+    if (window.scrollY >= maxScroll() - 2) window.scrollTo({ top: 0, behavior: 'instant' });
+    y = window.scrollY;
+    playing = true;
+    lastT = performance.now();
+    setLabel('❚❚ Pause');
+    armQuiet();
+    requestAnimationFrame(frame);
+  }
+  function stop(label) {
+    playing = false;
+    setLabel(label || '▶ Continue');
+    armQuiet();
+  }
+
+  playBtn.addEventListener('click', () => (playing ? stop() : start()));
+  speedBtn.addEventListener('click', () => {
+    speedIdx = (speedIdx + 1) % speeds.length;
+    speedBtn.textContent = speeds[speedIdx] + '×';
+  });
+  // user scrolls by hand or opens a photo -> pause
+  ['wheel', 'touchmove'].forEach(ev => window.addEventListener(ev, () => { if (playing) stop(); }, { passive: true }));
+  window.addEventListener('keydown', e => { if (playing && e.key !== 'Escape') stop(); });
+  document.querySelectorAll('.photo').forEach(p => p.addEventListener('click', () => { if (playing) stop(); }));
+  // bring the buttons back when the screen is touched / mouse moves
+  ['mousemove', 'touchstart', 'pointerdown'].forEach(ev => window.addEventListener(ev, armQuiet, { passive: true }));
 </script>
 </body>
 </html>
